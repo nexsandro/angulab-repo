@@ -1,0 +1,14 @@
+alter table TB_TERM drop foreign key FKD18D3F9D45A4E47C;
+alter table TB_TERM drop foreign key FKD18D3F9DCD51E26D;
+alter table TB_TERM drop foreign key FKD18D3F9D46172EFA;
+drop table if exists TB_KEYW;
+drop table if exists TB_LANG;
+drop table if exists TB_PACK;
+drop table if exists TB_TERM;
+create table TB_KEYW (sq_keyw integer not null auto_increment, no_desc varchar(255), no_key varchar(255), primary key (sq_keyw));
+create table TB_LANG (sq_lang integer not null auto_increment, no_name varchar(255), primary key (sq_lang));
+create table TB_PACK (sq_pack integer not null auto_increment, no_name varchar(255), primary key (sq_pack));
+create table TB_TERM (sq_term integer not null auto_increment, no_text varchar(255), sq_keyw integer, sq_lang integer, sq_pack integer, primary key (sq_term));
+alter table TB_TERM add index FKD18D3F9D45A4E47C (sq_keyw), add constraint FKD18D3F9D45A4E47C foreign key (sq_keyw) references TB_KEYW (sq_keyw);
+alter table TB_TERM add index FKD18D3F9DCD51E26D (sq_lang), add constraint FKD18D3F9DCD51E26D foreign key (sq_lang) references TB_LANG (sq_lang);
+alter table TB_TERM add index FKD18D3F9D46172EFA (sq_pack), add constraint FKD18D3F9D46172EFA foreign key (sq_pack) references TB_PACK (sq_pack);
